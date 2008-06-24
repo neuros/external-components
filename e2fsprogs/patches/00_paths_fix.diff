@@ -1,0 +1,58 @@
+diff -ru clean/e2fsck/unix.c e2fsprogs-1.40.2/e2fsck/unix.c
+--- clean/e2fsck/unix.c	2007-12-05 10:09:02.000000000 +0100
++++ e2fsprogs-1.40.2/e2fsck/unix.c	2007-12-05 10:07:34.000000000 +0100
+@@ -569,7 +569,8 @@
+ 	exit(FSCK_ERROR);
+ }
+ 
+-static const char *config_fn[] = { ROOT_SYSCONFDIR "/e2fsck.conf", 0 };
++//Force this to be taken from /etc, i'm tired of fighting with configure
++static const char *config_fn[] = { "/etc/e2fsck.conf", 0 };
+ 
+ static errcode_t PRS(int argc, char *argv[], e2fsck_t *ret_ctx)
+ {
+
+diff -ru clean/lib/ext2fs/ismounted.c e2fsprogs-1.40.2/lib/ext2fs/ismounted.c
+--- clean/lib/ext2fs/ismounted.c	2007-06-30 14:58:34.000000000 +0200
++++ e2fsprogs-1.40.2/lib/ext2fs/ismounted.c	2007-12-05 10:05:36.000000000 +0100
+@@ -178,16 +178,18 @@
+ 	if (retval == 0 && (*mount_flags != 0))
+ 		return 0;
+ #endif /* __linux__ */
+-#if defined(MOUNTED) || defined(_PATH_MOUNTED)
+-#ifndef MOUNTED
+-#define MOUNTED _PATH_MOUNTED
+-#endif /* MOUNTED */
+-	retval = check_mntent_file(MOUNTED, file, mount_flags, mtpt, mtlen);
+-	return retval;
+-#else 
++
++// This check is not useful to us, because it goes into /etc/mtab which we don't have
++//#if defined(MOUNTED) || defined(_PATH_MOUNTED)
++//#ifndef MOUNTED
++//#define MOUNTED _PATH_MOUNTED
++//#endif /* MOUNTED */
++//	retval = check_mntent_file(MOUNTED, file, mount_flags, mtpt, mtlen);
++//	return retval;
++//#else 
+ 	*mount_flags = 0;
+ 	return 0;
+-#endif /* defined(MOUNTED) || defined(_PATH_MOUNTED) */
++//#endif /* defined(MOUNTED) || defined(_PATH_MOUNTED) */
+ }
+ 
+ #else
+
+diff -ru clean/misc/mke2fs.c e2fsprogs-1.40.2/misc/mke2fs.c
+--- clean/misc/mke2fs.c	2007-12-05 10:09:08.000000000 +0100
++++ e2fsprogs-1.40.2/misc/mke2fs.c	2007-12-05 10:09:14.000000000 +0100
+@@ -886,7 +886,8 @@
+ 	exit(1);
+ }
+ 
+-static const char *config_fn[] = { ROOT_SYSCONFDIR "/mke2fs.conf", 0 };
++//Force this to be taken from /etc, i'm tired of fighting with configure
++static const char *config_fn[] = { "/etc/mke2fs.conf", 0 };
+ 
+ static void edit_feature(const char *str, __u32 *compat_array) 
+ {
