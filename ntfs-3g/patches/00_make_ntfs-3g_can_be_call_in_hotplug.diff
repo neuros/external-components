@@ -1,0 +1,18 @@
+diff -ru ntfs-3g-1.2412/src/ntfs-3g.c ntfs-3g-1.2412_changed/src/ntfs-3g.c
+--- ntfs-3g-1.2412/src/ntfs-3g.c	2008-04-02 19:30:12.000000000 +0200
++++ ntfs-3g-1.2412_changed/src/ntfs-3g.c	2008-04-29 16:24:19.000000000 +0200
+@@ -2241,7 +2241,13 @@
+ #endif
+ 	if (drop_privs())
+ 		return NTFS_VOLUME_NO_PRIVILEGE;
+-	
++
++	int nullfd;
++	nullfd = open("/dev/null", O_RDWR);
++	dup2(nullfd, 0);
++	dup2(nullfd, 1);
++	dup2(nullfd, 2);
++
+ 	utils_set_locale();
+ 	ntfs_log_set_handler(ntfs_log_handler_stderr);
+ 

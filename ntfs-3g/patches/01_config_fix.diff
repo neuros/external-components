@@ -1,0 +1,12 @@
+diff -Naur ntfs-3g-1.2531-bak/configure ntfs-3g-1.2531/configure
+--- ntfs-3g-1.2531-bak/configure	2008-07-01 12:14:43.000000000 +0800
++++ ntfs-3g-1.2531/configure	2008-07-01 12:13:36.000000000 +0800
+@@ -2671,7 +2671,7 @@
+ else
+ 
+ 		case "${target_os}" in
+-			linux*) enable_mount_helper="yes" ;;
++			#linux*) enable_mount_helper="yes" ;;
+ 			*) enable_mount_helper="no" ;;
+ 		esac
+ 
