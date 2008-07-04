@@ -49,6 +49,8 @@ install: all
 
 	cp -av $(INSTROOT)/bin/* $(INSTALL_MOD_PATH)/bin/
 	cp -av $(INSTROOT)/lib/libntfs-3g.so* $(INSTALL_MOD_PATH)/lib/
+	rm -f $(INSTALL_MOD_PATH)/sbin/mount.ntfs-3g
+	ln -s /bin/ntfs-3g $(INSTALL_MOD_PATH)/sbin/mount.ntfs-3g
 
 clean:
 	@rm -rfv $(BDIR)
