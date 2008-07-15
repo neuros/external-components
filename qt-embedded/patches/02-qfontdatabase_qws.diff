@@ -1,0 +1,29 @@
+--- _build/qt-embedded-linux-opensource-src-4.4.0/src/gui/text/qfontdatabase_qws.cpp Mon Feb 25 16:35:38 CET 2008
++++ src/gui/text/qfontdatabase_qws.cpp Mon May 19 10:51:59 2008
+@@ -706,11 +706,22 @@
+ static void registerFont(QFontDatabasePrivate::ApplicationFont *fnt)
+ {
+     QFontDatabasePrivate *db = privateDb();
+-#ifdef QT_NO_FREETYPE
+-    Q_UNUSED(fnt);
++#ifndef QT_NO_QWS_QPF2
++    if (fnt->fileName.endsWith(".qpf2"))
++        db->addQPF2File(QFile::encodeName(fnt->fileName));
++    else
++#endif
++
++#ifndef QT_NO_FREETYPE
++        fnt->families = db->addTTFile(QFile::encodeName(fnt->fileName), fnt->data);
+ #else
+-    fnt->families = db->addTTFile(QFile::encodeName(fnt->fileName), fnt->data);
++        qt_noop();
+ #endif
++
++#if defined(QT_NO_QWS_QPF2) && defined(QT_NO_FREETYPE)
++    Q_UNUSED(fnt);
++#endif
++
+     db->reregisterAppFonts = true;
+ }
+ 
+

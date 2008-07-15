@@ -1,0 +1,49 @@
+diff -uNrp _build/qt-embedded-linux-opensource-src-4.4.0/configure _build/qt_mod/configure
+--- _build/qt-embedded-linux-opensource-src-4.4.0/configure	2008-04-28 08:46:43.000000000 -0500
++++ _build/qt_mod/configure	2008-05-07 19:23:10.000000000 -0500
+@@ -3376,7 +3376,7 @@ if [ "$Edition" = "Qtopia" ]; then
+             else
+                 echo "Do you accept the terms of the license? \c"
+             fi
+-            read acceptance
++            acceptance=yes
+         fi
+         echo
+         if [ "$acceptance" = "yes" ]; then
+@@ -3423,7 +3423,7 @@ elif [ "$Edition" = "OpenSource" ]; then
+             else
+                 echo "Do you accept the terms of $affix license? \c"
+             fi
+-            read acceptance
++            acceptance=yes
+         fi
+         echo
+         if [ "$acceptance" = "yes" ]; then
+@@ -3468,7 +3468,7 @@ elif [ "$Edition" = "Preview" ]; then
+             else
+                 echo "Do you accept the terms of the license? \c"
+             fi
+-            read acceptance
++            acceptance=yes
+         fi
+         echo
+         if [ "$acceptance" = "yes" ]; then
+@@ -3513,7 +3513,7 @@ elif [ "$Edition" = "Snapshot" ]; then
+             else
+                 echo "Do you accept the terms of the license? \c"
+             fi
+-            read acceptance
++            acceptance=yes
+         fi
+         echo
+         if [ "$acceptance" = "yes" ]; then
+@@ -3607,7 +3607,8 @@ elif [ "$Edition" != "Trolltech" ]; then
+             else
+                 echo "Do you accept the terms of the $TheLicense? \c"
+             fi
+-            read acceptance
++            acceptance=yes
++
+         fi
+         echo
+         if [ "$acceptance" = "yes" ]; then

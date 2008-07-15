@@ -1,0 +1,111 @@
+diff -ru dist/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.cpp _build/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.cpp
+--- dist/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.cpp	2007-10-01 15:35:34.000000000 +0200
++++ _build/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.cpp	2008-02-01 15:06:18.000000000 +0100
+@@ -45,6 +45,8 @@
+ #include "qtimer.h"
+ #include <stdlib.h>
+ 
++#define REPEAT_DELAY_DEFAULT 400
++#define REPEAT_PERIOD_DEFAULT 110
+ 
+ class QWSKbPrivate : public QObject
+ {
+@@ -55,8 +57,8 @@
+         arTimer = new QTimer(this);
+         arTimer->setSingleShot(true);
+         connect(arTimer, SIGNAL(timeout()), SLOT(autoRepeat()));
+-        repeatdelay = 400;
+-        repeatperiod = 80;
++        repeatdelay = REPEAT_DELAY_DEFAULT;
++        repeatperiod = REPEAT_PERIOD_DEFAULT;
+     }
+ 
+     void beginAutoRepeat(int uni, int code, Qt::KeyboardModifiers mod) {
+@@ -69,6 +71,24 @@
+         arTimer->stop();
+     }
+ 
++    void setAutoRepeatPeriod(int period) {
++        if (period <= 0) period = REPEAT_PERIOD_DEFAULT;
++        repeatperiod = period;
++    }
++
++    void setAutoRepeatDelay(int delay) {
++        if (delay <= 0) delay = REPEAT_DELAY_DEFAULT;
++        repeatdelay = delay;
++    }
++
++    int getAutoRepeatPeriod() {
++        return repeatperiod;
++    }
++
++    int getAutoRepeatDelay() {
++        return repeatdelay;
++    }
++
+ private slots:
+     void autoRepeat() {
+         handler->processKeyEvent(unicode, keycode, modifier, false, true);
+@@ -237,6 +257,48 @@
+     d->endAutoRepeat();
+ }
+ 
++/*!
++    Set the millisecond \a delay after which a key press engages auto-repeat mode.
++
++    \sa beginAutoRepeat(), getAutoRepeatDelay(), getAutoRepeatPeriod(), setAutoRepeatPeriod()
++*/
++void QWSKeyboardHandler::setAutoRepeatDelay(int delay)
++{
++    d->setAutoRepeatDelay(delay);
++}
++
++/*!
++    Set the millisecond \a period that is used to send auto-repeat key events when auto-repeat is engaged.
++    It you set this when auto-repeat is engaged already, it will become effective the next time is engaged
++    again, it won't affect current burst.
++
++    \sa beginAutoRepeat(), getAutoRepeatDelay(), getAutoRepeatPeriod(), setAutoRepeatPeriod()
++*/
++void QWSKeyboardHandler::setAutoRepeatPeriod(int period)
++{
++    d->setAutoRepeatPeriod(period);
++}
++
++/*!
++    Get the millisecond \a delay after which a key press engages auto-repeat mode.
++
++    \sa beginAutoRepeat(), setAutoRepeatDelay(), getAutoRepeatPeriod(), setAutoRepeatPeriod()
++*/
++int QWSKeyboardHandler::getAutoRepeatDelay()
++{
++    return d->getAutoRepeatDelay();
++}
++
++/*!
++    Get the millisecond \a period that is used to send auto-repeat key events when auto-repeat is engaged.
++
++    \sa beginAutoRepeat(), setAutoRepeatDelay(), getAutoRepeatDelay(), setAutoRepeatPeriod()
++*/
++int QWSKeyboardHandler::getAutoRepeatPeriod()
++{
++    return d->getAutoRepeatPeriod();
++}
++
+ #include "qkbd_qws.moc"
+ 
+ #endif // QT_NO_QWS_KEYBOARD
+diff -ru dist/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.h _build/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.h
+--- dist/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.h	2007-10-01 15:35:34.000000000 +0200
++++ _build/qtopia-core-opensource-src-4.3.2/src/gui/embedded/qkbd_qws.h	2008-02-01 15:05:23.000000000 +0100
+@@ -62,6 +62,10 @@
+     int transformDirKey(int key);
+     void beginAutoRepeat(int uni, int code, Qt::KeyboardModifiers mod);
+     void endAutoRepeat();
++    void setAutoRepeatDelay(int delay);
++    void setAutoRepeatPeriod(int period);
++    int getAutoRepeatDelay();
++    int getAutoRepeatPeriod();
+ 
+ private:
+     QWSKbPrivate *d;

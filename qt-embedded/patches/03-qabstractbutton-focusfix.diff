@@ -1,0 +1,28 @@
+--- _build/qt-embedded-linux-opensource-src-4.4.0/src/gui/widgets/qabstractbutton.cpp	2008-04-28 08:46:53.000000000 -0500
++++ _build/qt-embedded-linux-opensource-src-4.4.0-new/src/gui/widgets/qabstractbutton.cpp	2008-05-27 20:43:37.000000000 -0500
+@@ -1161,15 +1161,23 @@
+     case Qt::Key_Right:
+     case Qt::Key_Down:
+ #ifdef QT_KEYPAD_NAVIGATION
+-        if (QApplication::keypadNavigationEnabled() && (e->key() == Qt::Key_Left || e->key() == Qt::Key_Right)) {
++        if (QApplication::keypadNavigationEnabled() && (e->key() == Qt::Key_Left || e->key() == Qt::Key_Right)) {
+             e->ignore();
+             return;
+         }
+ #endif
++#ifndef QT_NO_BUTTONGROUP
++        if (d->group || d->autoExclusive) {
++#else
++        if (d->autoExclusive) {
++#endif
+         d->moveFocus(e->key());
+         if (hasFocus()) // nothing happend, propagate
+             e->ignore();
+-        break;
++        } else {
++                focusNextPrevChild(next);
++        }
++        break;    
+     case Qt::Key_Escape:
+         if (d->down) {
+             setDown(false);
