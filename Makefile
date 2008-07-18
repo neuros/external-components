@@ -1,6 +1,7 @@
 all:
 %::
 	@mkdir -p downloads
+	@$(MAKE) -C qt-embedded $@
 	@$(MAKE) -C rt73-firmware $@
 	@$(MAKE) -C zydas-firmware $@
 	@$(MAKE) -C wifi-tools $@

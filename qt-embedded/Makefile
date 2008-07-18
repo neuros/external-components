@@ -37,6 +37,8 @@ all:
 	# Only rebuild if directory doesn't exist already.
 	configs/setup-qt-embedded.sh
 
+rebuild:
+
 	@echo "########################################"
 	@echo "    INSTALL qt-embedded 4.0  ..."
 	@echo "########################################"
