@@ -8,3 +8,4 @@ all:
 	@$(MAKE) -C e2fsprogs $@
 	@$(MAKE) -C dosfstools $@
 	@$(MAKE) -C ntfs-3g $@
+	@$(MAKE) -C yaffs2_utils $@
