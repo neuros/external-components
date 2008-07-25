@@ -76,17 +76,17 @@ rebuild:
 
 install:
 
-	mkdir -p ${INSTALL_MOD_PATH}/${QT_INSTALL_PREFIX}/lib
-	mkdir -p ${INSTALL_MOD_PATH}/${QT_INSTALL_PREFIX}/plugins
-	mkdir -p ${INSTALL_MOD_PATH}/${QT_INSTALL_PREFIX}/lib/fonts
+	mkdir -p ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/lib
+	mkdir -p ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/plugins
+	mkdir -p ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/lib/fonts
 
-	cp -a ${TOOLCHAIN}/Qt/lib/libQt*so* ${INSTALL_MOD_PATH}/${QT_INSTALL_PREFIX}/lib
-	cp -a fonts/*.qpf2 ${INSTALL_MOD_PATH}/${QT_INSTALL_PREFIX}/lib/fonts
+	cp -a ${TOOLCHAIN}/Qt/lib/libQt*so* ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/lib
+	cp -a fonts/*.qpf2 ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/lib/fonts
 	cp -a fonts/*.qpf2 ${TOOLCHAIN}/Qt/lib/fonts
 
-	cp -Ra ${TOOLCHAIN}/Qt/plugins/* ${INSTALL_MOD_PATH}/${QT_INSTALL_PREFIX}/plugins
+	cp -Ra ${TOOLCHAIN}/Qt/plugins/* ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/plugins
 
-	cd ${INSTALL_MOD_PATH}/opt && ln -sf Qt-$(TVER) Qt
+	cd ${INSTALL_MOD_PATH}opt && ln -sf Qt-$(TVER) Qt
 
 clean:
 	-rm -rfv _build
