@@ -42,7 +42,7 @@ all:
 
 	make -C $(TDIR)
 
-install: all
+install:
 	make -C $(TDIR) install
 	arm-linux-strip --strip-unneeded $(INSTROOT)/bin/*
 	arm-linux-strip --strip-unneeded $(INSTROOT)/lib/*.so*

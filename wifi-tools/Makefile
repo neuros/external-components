@@ -32,7 +32,7 @@ all:
 	@tar -C ${TDIR} -xvzf ${TDISTS}/${TARCHIVE}
 	@make -C $(TDIR)/wireless_tools.$(TVER) CC=$(CC) PREFIX=${INSTALL_MOD_PATH}/usr BUILD_STATIC=y
 
-install:all
+install:
 	@mkdir -p ${INST_DIR}
 	@make -C $(TDIR)/wireless_tools.$(TVER) CC=$(CC) PREFIX=${INSTALL_MOD_PATH}/usr BUILD_STATIC=y install
 

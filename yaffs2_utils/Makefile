@@ -13,7 +13,7 @@ all: mkyaffs2image
 mkyaffs2image: $(MKYAFFS2OBJS)
 	$(CC) -o $@ $(MKYAFFS2OBJS)
 
-install:all
+install:
 	@mkdir -p ${PRJROOT}/images/
 	@cp -a mkyaffs2image ${PRJROOT}/images/
 

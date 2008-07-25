@@ -30,7 +30,7 @@ all:
 	@mkdir -p ${TDIR}
 	@if test ! -f ${TDISTS}/${TARCHIVE}; then wget -N -P ${TDISTS} ${TURL}; fi
 
-install:all
+install:
 	@mkdir -p ${INST_DIR}
 	@tar -C ${TDIR} -xvjf ${TDISTS}/${TARCHIVE}
 	@cp ${TDIR}/zd1211-firmware/zd1211* ${INST_DIR}/

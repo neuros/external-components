@@ -40,7 +40,7 @@ all:
 	--disable-imager --disable-resizer --enable-elf-shlibs
 	make -C $(TDIR)
 
-install: all
+install:
 	mkdir -p $(INSTROOT)/etc  # make install should create this, but doesn't	
 	make -C $(TDIR) install
 

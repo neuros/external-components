@@ -36,7 +36,7 @@ all:
 	@mkdir -p ${TDIR}
 	@if test ! -f ${TDISTS}/${TARCHIVE}; then wget -N -P ${TDISTS} ${TURL}; fi
 
-install:all
+install:
 	@mkdir -p ${INST_DIR}
 	@unzip -d ${TDIR} ${TDISTS}/${TARCHIVE}
 	@cp ${TDIR}/RT71W_Firmware_V${TVER}/rt73.bin ${INST_DIR}/
