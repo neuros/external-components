@@ -86,7 +86,7 @@ install:
 
 	cp -Ra ${TOOLCHAIN}/Qt/plugins/* ${INSTALL_MOD_PATH}${QT_INSTALL_PREFIX}/plugins
 
-	cd ${INSTALL_MOD_PATH}opt && ln -sf Qt-$(TVER) Qt
+	cd ${INSTALL_MOD_PATH}/opt && ln -sf Qt-$(TVER) Qt
 
 clean:
 	-rm -rfv _build
