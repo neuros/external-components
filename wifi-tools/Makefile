@@ -16,7 +16,6 @@ TURL=http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/$(TARCHIVE)
 TDISTS=$(PRJROOT)/external-components/downloads
 TDIR=_install
 INST_DIR=${INSTALL_MOD_PATH}/usr/bin
-CC=arm-linux-gcc
 
 
 .PHONY: install clean

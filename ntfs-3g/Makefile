@@ -44,8 +44,8 @@ all:
 
 install:
 	make -C $(TDIR) install
-	arm-linux-strip --strip-unneeded $(INSTROOT)/bin/*
-	arm-linux-strip --strip-unneeded $(INSTROOT)/lib/*.so*
+	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/bin/*
+	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/lib/*.so*
 
 	cp -av $(INSTROOT)/bin/* $(INSTALL_MOD_PATH)/bin/
 	cp -av $(INSTROOT)/lib/libntfs-3g.so* $(INSTALL_MOD_PATH)/lib/
