@@ -17,6 +17,7 @@ BDIR=_build
 TDIR=$(BDIR)/dosfstools-$(TVER)
 TDISTS=$(PRJROOT)/external-components/downloads
 INST_DIR=${INSTALL_MOD_PATH}
+CC=arm-linux-gcc
 
 .PHONY: install clean
 

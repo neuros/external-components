@@ -43,9 +43,9 @@ install: all
 	mkdir -p $(INSTALL_MOD_PATH)/usr/lib
 	mkdir -p $(INSTALL_MOD_PATH)/usr/share
 
-	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/bin/xmlcatalog
-	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/bin/xmllint
-	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/lib/libxml2.so
+	arm-linux-strip --strip-unneeded $(INSTROOT)/bin/xmlcatalog
+	arm-linux-strip --strip-unneeded $(INSTROOT)/bin/xmllint
+	arm-linux-strip --strip-unneeded $(INSTROOT)/lib/libxml2.so
 
 	cp -av $(INSTROOT)/bin/xmlcatalog $(INSTALL_MOD_PATH)/usr/bin
 	cp -av $(INSTROOT)/bin/xmllint $(INSTALL_MOD_PATH)/usr/bin

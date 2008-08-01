@@ -36,7 +36,7 @@ all:
 
 	mkdir -p $(INSTROOT)
 	cd $(TDIR) && \
-	./configure --prefix=$(INSTROOT) --host=arm-linux --with-cc=$(CC) --with-linker=$(LD) \
+	./configure --prefix=$(INSTROOT) --host=arm-linux --with-cc=arm-linux-gcc --with-linker=arm-linux-ld \
 	--disable-imager --disable-resizer --enable-elf-shlibs
 	make -C $(TDIR)
 
@@ -44,8 +44,8 @@ install:
 	mkdir -p $(INSTROOT)/etc  # make install should create this, but doesn't	
 	make -C $(TDIR) install
 
-	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/sbin/*
-	$(CROSS_COMPILE)strip --strip-unneeded $(INSTROOT)/lib/*
+	arm-linux-strip --strip-unneeded $(INSTROOT)/sbin/*
+	arm-linux-strip --strip-unneeded $(INSTROOT)/lib/*
 
 	cp -av $(INSTROOT)/sbin/mke2fs $(INSTALL_MOD_PATH)/sbin
 	cp -av $(INSTROOT)/sbin/e2fsck $(INSTALL_MOD_PATH)/sbin
