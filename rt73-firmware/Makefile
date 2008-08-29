@@ -38,7 +38,7 @@ all:
 
 install:
 	@mkdir -p ${INST_DIR}
-	@unzip -d ${TDIR} ${TDISTS}/${TARCHIVE}
+	@unzip -o -d ${TDIR} ${TDISTS}/${TARCHIVE}
 	@cp ${TDIR}/RT71W_Firmware_V${TVER}/rt73.bin ${INST_DIR}/
 
 clean:
