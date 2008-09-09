@@ -1,0 +1,20 @@
+--- oprofile-0.9.4/utils/opcontrol	2008-04-28 23:23:23.000000000 +0200
++++ mod/utils/opcontrol	2008-09-09 13:06:50.000000000 +0200
+@@ -187,7 +187,7 @@
+ 		fi
+ 	fi
+ 	mkdir /dev/oprofile >/dev/null 2>&1
+-	grep oprofilefs /etc/mtab >/dev/null
++	mount | grep oprofilefs >/dev/null
+ 	if test "$?" -ne 0; then
+ 		mount -t oprofilefs nodev /dev/oprofile >/dev/null
+ 	fi
+@@ -1705,7 +1705,7 @@
+ check_version()
+ {
+ 	OPROFILE_AVAILABLE=no
+-	grep oprofilefs /etc/mtab >/dev/null
++	mount | grep oprofilefs >/dev/null
+ 	if test "$?" -eq 0; then
+ 		# need to have oprofilefs mounted for this to work on 2.6
+ 		KERNEL_SUPPORT=yes
