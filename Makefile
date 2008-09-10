@@ -1,6 +1,8 @@
 all:
 %::
 	@mkdir -p downloads
+	@$(MAKE) -C expat $@
+	@$(MAKE) -C dbus $@
 	@$(MAKE) -C qt-embedded $@
 	@$(MAKE) -C rt73-firmware $@
 	@$(MAKE) -C zydas-firmware $@
