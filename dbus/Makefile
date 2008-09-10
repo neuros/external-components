@@ -40,8 +40,15 @@ all:
 	@make -C $(TDIR) CC=$(CC)
 	@make -C $(TDIR) CC=$(CC) PREFIX=$(INSTALL_MOD_PATH) install
 
-install:
+	#Auto install into toolchain for deps
+	cp -av $(INSTROOT)/include/dbus-1.0/* $(TOOLCHAIN_USR_INSTALL)/include/dbus
+	cp -av $(INSTROOT)/lib/* $(TOOLCHAIN_USR_INSTALL)/lib
+	cp -av $(INSTROOT)/lib/dbus-1.0/include/dbus/* $(TOOLCHAIN_USR_INSTALL)/include/dbus
+	cp -av $(INSTROOT)/bin/* $(TOOLCHAIN_USR_INSTALL)/bin
 
+
+install:
+	#install to rootfs
 	mkdir -p $(INSTALL_MOD_PATH)/var/lib/dbus
 	mkdir -p $(INSTALL_MOD_PATH)/var/run/dbus
 
@@ -50,10 +57,6 @@ install:
 	cp -av $(INSTROOT)/share/* $(INSTALL_MOD_PATH)/usr/share
 	cp -av $(INSTROOT)/etc/* $(INSTALL_MOD_PATH)/etc
 
-	cp -av $(INSTROOT)/include/dbus-1.0/* $(TOOLCHAIN_USR_INSTALL)/include/dbus
-	cp -av $(INSTROOT)/lib/* $(TOOLCHAIN_USR_INSTALL)/lib
-	cp -av $(INSTROOT)/lib/dbus-1.0/include/dbus/* $(TOOLCHAIN_USR_INSTALL)/include/dbus
-	cp -av $(INSTROOT)/bin/* $(TOOLCHAIN_USR_INSTALL)/bin
 
 clean:
 	@rm -rfv $(BDIR)

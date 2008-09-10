@@ -39,14 +39,20 @@ all:
 	make -C $(TDIR) 
 	make -C $(TDIR) install
 
+	# Make toolchain dirs if they do not exist yet.
+	mkdir -p $(TOOLCHAIN_USR_INSTALL)/include
+	mkdir -p $(TOOLCHAIN_USR_INSTALL)/lib
+	mkdir -p $(TOOLCHAIN_USR_INSTALL)/bin
+	cp -av $(INSTROOT)/include/* $(TOOLCHAIN_USR_INSTALL)/include
+	cp -av $(INSTROOT)/lib/* $(TOOLCHAIN_USR_INSTALL)/lib
+	cp -av $(INSTROOT)/bin/* $(TOOLCHAIN_USR_INSTALL)/bin
+
+
 install:
 
 	cp -av $(INSTROOT)/bin/* $(INSTALL_MOD_PATH)/usr/bin
 	cp -av $(INSTROOT)/lib/* $(INSTALL_MOD_PATH)/usr/lib
 
-	cp -av $(INSTROOT)/include/* $(TOOLCHAIN_USR_INSTALL)/include
-	cp -av $(INSTROOT)/lib/* $(TOOLCHAIN_USR_INSTALL)/lib
-	cp -av $(INSTROOT)/bin/* $(TOOLCHAIN_USR_INSTALL)/bin
 
 	arm-linux-strip --strip-unneeded $(INSTROOT)/lib/*.so*
 
