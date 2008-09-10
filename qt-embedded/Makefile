@@ -66,7 +66,7 @@ rebuild:
 	-no-stl -no-exceptions -no-sql-ibase -no-sql-mysql -no-sql-odbc \
 	-no-sql-psql -no-sql-sqlite2 -no-decoration-styled  -no-decoration-windows \
 	-no-decoration-default -I${TOOLCHAIN_USR_INSTALL}/include -reduce-relocations \
-	-L${TOOLCHAIN_USR_INSTALL}/lib -no-phonon -no-xmlpatterns -no-dbus -no-nis -webkit \
+	-L${TOOLCHAIN_USR_INSTALL}/lib -no-phonon -no-xmlpatterns -dbus-linked -no-nis -webkit \
 	-DQT_KEYPAD_NAVIGATION
 
 	make -j6 -C $(TDIR)
