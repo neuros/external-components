@@ -1,8 +1,8 @@
 ##############################################################################
-# Description: Makefile for dosfstools
+# Description: Makefile for dbus
 # 
-# Author:  Terry Qiu (tqiu@neuros.com.cn)
-# version: 1.0
+# Author:  Tom Bruno (tbruno@neurostechnology.com)
+# version: 1.2.3
 # Extra tools for build: wget
 ##############################################################################
 
@@ -51,12 +51,15 @@ install:
 	#install to rootfs
 	mkdir -p $(INSTALL_MOD_PATH)/var/lib/dbus
 	mkdir -p $(INSTALL_MOD_PATH)/var/run/dbus
-
+	mkdir -p $(INSTALL_MOD_PATH)/usr/lib
+	mkdir -p $(INSTALL_MOD_PATH)/usr/share
+	mkdir -p $(INSTALL_MOD_PATH)/usr/bin
+	mkdir -p $(INSTALL_MOD_PATH)/etc
+	
 	cp -av $(INSTROOT)/bin/* $(INSTALL_MOD_PATH)/usr/bin
 	cp -av $(INSTROOT)/lib/*.so* $(INSTALL_MOD_PATH)/usr/lib
 	cp -av $(INSTROOT)/share/* $(INSTALL_MOD_PATH)/usr/share
 	cp -av $(INSTROOT)/etc/* $(INSTALL_MOD_PATH)/etc
-
 
 clean:
 	@rm -rfv $(BDIR)
