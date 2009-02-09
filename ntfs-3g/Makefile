@@ -2,7 +2,7 @@
 # Description: Makefile for ntfs-3g
 # 
 # Author:  Terry Qiu(tqiu@neuros.com.cn)
-# Version: 1.5012
+# Version: 2009.1.1
 # Extra tools for rebuild: wget
 # Dependencies: fuse
 #########################################################################################
@@ -11,7 +11,7 @@ ifndef PRJROOT
     $(error You must first source the BSP environment: "source neuros-env")
 endif
 
-TVER=1.5012
+TVER=2009.1.1
 TARCHIVE=ntfs-3g-$(TVER).tgz
 TURL=http://www.ntfs-3g.org/$(TARCHIVE)
 BDIR=_build
