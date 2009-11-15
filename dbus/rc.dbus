@@ -1,0 +1,59 @@
+#!/bin/sh
+
+start_dbus()
+{
+	DBUS_USER=`grep dbus /etc/passwd`
+	DBUS_GROUP=`grep dbus /etc/group`
+	if test -z "$DBUS_GROUP"; then
+		addgroup dbus
+	fi
+	if test -z "$DBUS_USER"; then
+		adduser dbus -h /var/lib/dbus -s /sbin/nologin -D -G dbus -H
+	fi
+	/usr/bin/dbus-uuidgen --ensure=/var/lib/dbus/machine-id
+	/usr/bin/dbus-daemon --fork --config-file /etc/dbus-1/system.conf
+}
+
+stop_dbus()
+{
+	killall /usr/bin/dbus-daemon --fork --config-file /etc/dbus-1/system.conf
+	rm -f /var/run/dbus/dbus.pid
+}
+
+status()
+{
+	echo -n "dbus-1 ... "
+	if test -f /var/run/dbus/dbus.pid; then
+		echo "pass"
+	else
+		echo "fail"
+	fi
+	echo
+}
+
+case "$1" in
+	start)
+		echo -n "Starting dbus ... "
+		start_dbus
+		echo "done."
+	;;
+	stop)
+		echo -n "Stopping dbus ... "
+		stop_dbus
+		echo "done."
+	;;
+	restart)
+		stop
+		start
+	;;
+	status)
+		echo "Status dbus ... "
+		status
+	;;
+	*)
+		echo "Usage: $0 [start | stop | status | restart]"
+		exit 1
+	;;
+esac
+
+exit 0
