@@ -1,0 +1,11 @@
+--- alsa-utils-1.0.21/configure.in.orig	2009-11-24 11:36:57.000000000 +0100
++++ alsa-utils-1.0.21/configure.in	2009-11-24 11:37:08.000000000 +0100
+@@ -201,7 +201,7 @@
+   fi
+ 
+   AC_CHECK_HEADERS([panel.h menu.h form.h], [],
+-                   [AC_MSG_ERROR([required curses helper header not found])])
++                   [AC_MSG_WARN([required curses helper header not found])])
+   AC_CHECK_LIB([panel$NCURSESLIBSUFFIX], [new_panel],
+                [CURSESLIB="-lpanel$NCURSESLIBSUFFIX $CURSESLIB"],
+                [AC_MSG_ERROR([panel$NCURSESLIBSUFFIX library not found])])
