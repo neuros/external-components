@@ -36,7 +36,7 @@ all:
 
 	mkdir -p $(INSTROOT)
 	cd $(TDIR) && \
-	./configure --prefix=$(INSTROOT) --host=arm-linux --with-cc=arm-linux-gcc --with-linker=arm-linux-ld \
+	CFLAGS="-msoft-float" ./configure --prefix=$(INSTROOT) --host=arm-linux --with-cc=arm-linux-gcc --with-linker=arm-linux-ld \
 	--disable-imager --disable-resizer --enable-elf-shlibs
 	make -C $(TDIR)
 

@@ -35,7 +35,7 @@ all:
 	do patch -d $(TDIR) -p1 < $$p ; \
 	done
 
-	@make -C $(TDIR) CC=$(CC)
+	@make -C $(TDIR) CC=$(CC) CFLAGS="-msoft-float"
 
 install:
 	@make -C $(TDIR) CC=$(CC) PREFIX=$(INSTALL_MOD_PATH) install

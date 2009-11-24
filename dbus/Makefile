@@ -33,9 +33,9 @@ all:
 	@if test ! -f ${TDISTS}/${TARCHIVE}; then wget -N -P ${TDISTS} ${TURL}; fi
 	@tar -C ${BDIR} -xvzf ${TDISTS}/${TARCHIVE}
 
-	cd $(TDIR) && CFLAGS="-I$(TOOLCHAIN_USR_INSTALL)/include -fPIE" \
+	cd $(TDIR) && CFLAGS="-I$(TOOLCHAIN_USR_INSTALL)/include -fPIE -msoft-float" \
 	 LDFLAGS="-L$(TOOLCHAIN_USR_INSTALL)/lib" ac_cv_have_abstract_sockets=yes \
-	 ./configure --prefix=$(INSTROOT) --host=arm-linux --datadir=/usr/share --with-xml=expat --without-x --disable-static --enable-shared --disable-tests --disable-doxygen-docs --disable-xml-docs --with-system-socket=/var/run/dbus/system_bus.socket --with-system-pid-file=/var/run/dbus/dbus.pid --with-session-socket-dir=/var/run/dbus/ --with-dbus-user=dbus
+	 ./configure --prefix=$(INSTROOT) --host=arm-linux --datadir=/usr/share --with-xml=expat --without-x --disable-static --enable-shared --disable-tests --disable-doxygen-docs --disable-xml-docs --with-system-socket=/var/run/dbus/system_bus.socket --with-system-pid-file=/var/run/dbus/dbus.pid --with-session-socket-dir=/var/run/dbus --with-dbus-user=dbus --with-dbus-daemondir=/usr/bin
 
 	@make -C $(TDIR) CC=$(CC)
 	@make -C $(TDIR) CC=$(CC) install

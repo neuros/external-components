@@ -30,7 +30,7 @@ all:
 	done
 
 	mkdir -p $(INSTROOT)
-	cd $(TDIR) && \
+	cd $(TDIR) && CFLAGS="-msoft-float" \
 	./configure --prefix=/usr --host=arm-linux --disable-static
 	make -C $(TDIR)
 	DESTDIR=$(INSTROOT) make -C $(TDIR) install

@@ -30,11 +30,11 @@ all:
 	@mkdir -p ${TDIR}
 	@if test ! -f ${TDISTS}/${TARCHIVE}; then wget -N -P ${TDISTS} ${TURL}; fi
 	@tar -C ${TDIR} -xvzf ${TDISTS}/${TARCHIVE}
-	@make -C $(TDIR)/wireless_tools.$(TVER) CC=$(CC) PREFIX=${INSTALL_MOD_PATH}/usr BUILD_STATIC=y
+	@make -C $(TDIR)/wireless_tools.$(TVER) CC=$(CC) PREFIX=${INSTALL_MOD_PATH}/usr BUILD_STATIC=y CFLAGS="-msoft-float"
 
 install:
 	@mkdir -p ${INST_DIR}
-	@make -C $(TDIR)/wireless_tools.$(TVER) CC=$(CC) PREFIX=${INSTALL_MOD_PATH}/usr BUILD_STATIC=y install
+	@make -C $(TDIR)/wireless_tools.$(TVER) CC=$(CC) PREFIX=${INSTALL_MOD_PATH}/usr BUILD_STATIC=y CFLAGS="-msoft-float" install
 
 clean:
 	@rm -rfv ${TDIR}

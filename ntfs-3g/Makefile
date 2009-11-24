@@ -36,7 +36,7 @@ all:
 	done
 
 	mkdir -p $(INSTROOT)
-	cd $(TDIR) && \
+	cd $(TDIR) && CFLAGS="-msoft-float" \
 	./configure --prefix=$(INSTROOT) --host=arm-linux --exec-prefix=$(INSTROOT) \
 	--disable-ldconfig --disable-static --disable-mtab --disable-debug
 

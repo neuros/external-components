@@ -31,7 +31,7 @@ all:
 	done
 
 	mkdir -p $(INSTROOT)
-	cd $(TDIR) && \
+	cd $(TDIR) && CFLAGS="-msoft-float" \
 	./configure --host=arm-linux --target=arm-linux --prefix=$(INSTROOT) 
 	make -C $(TDIR)
 	make -C $(TDIR) install

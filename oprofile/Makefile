@@ -32,7 +32,7 @@ all:
 
 	mkdir -p $(INSTROOT)
 	cd $(TDIR) && \
-	CFLAGS="-I$(TOOLCHAIN_USR_INSTALL)/include -L$(TOOLCHAIN_USR_INSTALL)/lib" \
+	CFLAGS="-I$(TOOLCHAIN_USR_INSTALL)/include -L$(TOOLCHAIN_USR_INSTALL)/lib -msoft-float" \
 	./configure --host=arm-linux --with-kernel-support \
 	--with-extra-includes=$(TOOLCHAIN_USR_INSTALL)/include --with-extra-libs=$(TOOLCHAIN_USR_INSTALL)/lib \
 	--prefix=$(INSTROOT)
