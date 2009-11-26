@@ -61,8 +61,8 @@ all:
 	        --disable-alisp \
 		--disable-python \
 	        --with-debug=yes \
-	        --with-alsa-devdir=/dev/snd \
-	        --with-aload-devdir=/dev/snd \
+	        --with-alsa-devdir=/dev \
+	        --with-aload-devdir=/dev \
 		--with-ctl-plugins=all \
 	        --with-pcm-plugins=all
 
@@ -91,7 +91,7 @@ install:
 	cp -av $(INSTROOT)/usr/bin/* $(INSTALL_MOD_PATH)/usr/bin
 	cp -av $(INSTROOT)/usr/lib/*.so* $(INSTALL_MOD_PATH)/usr/lib
 	cp -av $(INSTROOT)/usr/share/* $(INSTALL_MOD_PATH)/usr/share
-	cp -av $(INSTROOT)/etc/* $(INSTALL_MOD_PATH)/etc
+	#cp -av $(INSTROOT)/etc/* $(INSTALL_MOD_PATH)/etc
 
 install:
 
