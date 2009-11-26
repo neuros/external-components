@@ -3,6 +3,7 @@ all:
 	@mkdir -p downloads
 	@$(MAKE) -C expat $@
 	@$(MAKE) -C dbus $@
+	@$(MAKE) -C ncurses $@
 	@$(MAKE) -C alsa-lib $@
 	@$(MAKE) -C alsa-utils $@
 #	@$(MAKE) -C qt-embedded $@
