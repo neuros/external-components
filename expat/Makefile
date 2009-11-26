@@ -34,7 +34,7 @@ all:
 
 	mkdir -p $(INSTROOT)
 	cd $(TDIR) && \
-	CFLAGS="-m-softfloat" ./configure --host=arm-linux --prefix=$(INSTROOT) --disable-static
+	CFLAGS="-msoft-float" ./configure --host=arm-linux --prefix=$(INSTROOT) --disable-static
 
 	make -C $(TDIR) 
 	make -C $(TDIR) install
