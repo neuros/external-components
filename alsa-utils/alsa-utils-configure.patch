@@ -1,0 +1,25 @@
+--- alsa-utils-1.0.21/configure.in.orig	2009-11-26 16:08:58.000000000 +0100
++++ alsa-utils-1.0.21/configure.in	2009-11-26 16:26:48.000000000 +0100
+@@ -138,6 +138,22 @@
+                  [ CURSESINC='<ncurses.h>'; CURSESLIB='-lncurses'; curseslib="ncurses"])
+     fi
+   fi
++  if test "$curseslib" = "ncursest" -o "$curseslib" = "auto"; then
++    AC_CHECK_PROG([ncursest6_config], [ncursest6-config], [yes])
++    if test "$ncursest6_config" = "yes"; then
++      CURSESINC="<ncurses.h>"
++      CURSESLIB=`ncursest6-config --libs`
++      CURSESLIBDIR=`ncursest6-config --libdir`
++      CURSES_CFLAGS=`ncursest6-config --cflags`
++      curseslib="ncursest"
++    else
++      AC_CHECK_LIB(ncursest, initscr,
++                 [ CURSESINC='<ncurses.h>'; CURSESLIB='-lncursest'; curseslib="ncursest"])
++    fi
++    if test -n "$CURSESINC"; then
++      NCURSESLIBSUFFIX="t"
++    fi
++  fi
+   if test "$curseslib" = "curses" -o "$curseslib" = "auto"; then
+     AC_CHECK_LIB(curses, initscr, 
+                  [ CURSESINC='<curses.h>'; CURSESLIB='-lcurses'; curseslib="curses"])

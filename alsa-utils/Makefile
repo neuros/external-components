@@ -33,7 +33,8 @@ all:
 	@if test ! -f ${TDISTS}/${TARCHIVE}; then wget -N -P ${TDISTS} ${TURL}; fi
 	@tar -C ${BDIR} -xvjf ${TDISTS}/${TARCHIVE}
 
-	cd $(TDIR) && patch -p1 < ../../alsa-utils-ncurses.patch && autoreconf && \
+	#cd $(TDIR) && patch -p1 < ../../alsa-utils-ncurses.patch && autoreconf &&
+	cd $(TDIR) && patch -p1 < ../../alsa-utils-configure.patch && autoreconf && \
 	CFLAGS="-I$(TOOLCHAIN_USR_INSTALL)/include -fPIE -msoft-float" \
 	LDFLAGS="-L$(TOOLCHAIN_USR_INSTALL)/lib -L${TOOLCHAIN_USR_INSTALL}/lib -lpthread" ac_cv_have_abstract_sockets=yes \
 	./configure --prefix=$(INSTROOT) --host=arm-linux \
@@ -51,8 +52,9 @@ all:
 	        --disable-rpath \
 		--disable-xmlto \
 	        --enable-alsatest \
-	        --disable-alsamixer \
+	        --enable-alsamixer \
 	        --enable-largefile \
+		--with-curses=ncursest \
 		--with-gnu-ld \
 		--with-librt
 

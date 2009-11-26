@@ -44,6 +44,7 @@ all:
 		--datadir=/usr/share \
 	        --mandir=/man \
 	        --enable-shared \
+		--with-shared \
 		--disable-nls \
 	        --disable-static \
 	        --disable-rpath \
@@ -56,13 +57,15 @@ all:
 		--without-progs \
 		--with-normal --with-debug \
 		--disable-relink \
+		--disable-lp64 --enable-largefile \
 		--disable-big-core --disable-big-strings \
-		--disable-lp64 --disable-largefile \
 		--with-pthread --enable-reentrant \
-		--enable-safe-sprintf
+		--enable-safe-sprintf \
+		--enable-symlinks
 
 	@make -C $(TDIR) CC=$(CC)
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTROOT) install
+	@make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTALL_MOD_PATH) install
 
 install:
