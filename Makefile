@@ -6,6 +6,7 @@ all:
 	@$(MAKE) -C ncurses $@
 	@$(MAKE) -C alsa-lib $@
 	@$(MAKE) -C alsa-utils $@
+	@$(MAKE) -C strace $@
 #	@$(MAKE) -C qt-embedded $@
 	@$(MAKE) -C rt73-firmware $@
 	@$(MAKE) -C zydas-firmware $@
