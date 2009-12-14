@@ -68,11 +68,13 @@ all:
 
 	@make -C $(TDIR) CC=$(CC)
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTROOT) install
+	@make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
 
 	#Fix up $(INSTROOT)/usr/lib/pkgconfig/alsa.pc
 	sed -e 's/libdir=\/usr\/lib/libdir=${prefix}\/usr\/lib/' \
 	    -e 's/includedir=\/usr\/include/includedir=${prefix}\/usr\/include/' \
-	    -i.orig $(INSTROOT)/usr/lib/pkgconfig/alsa.pc
+	    -i.orig $(INSTROOT)/usr/lib/pkgconfig/alsa.pc \
+	    -i.orig $(TOOLCHAIN)/target/usr/lib/pkgconfig/alsa.pc
 
 	#Auto install into toolchain for deps
 	mkdir -p $(TOOLCHAIN_USR_INSTALL)/include/alsa
