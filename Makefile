@@ -7,6 +7,7 @@ all:
 	@$(MAKE) -C alsa-lib $@
 	@$(MAKE) -C alsa-utils $@
 	@$(MAKE) -C strace $@
+	@$(MAKE) -C iperf $@
 #	@$(MAKE) -C qt-embedded $@
 	@$(MAKE) -C libgpg-error $@
 	@$(MAKE) -C libgcrypt $@

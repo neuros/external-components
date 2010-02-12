@@ -1,0 +1,11 @@
+--- iperf-2.0.4/configure.ac.orig	2010-02-12 10:01:28.000000000 +0100
++++ iperf-2.0.4/configure.ac	2010-02-12 10:01:35.000000000 +0100
+@@ -105,7 +105,7 @@
+ 
+ dnl Checks for library functions.
+ AC_FUNC_FORK
+-AC_FUNC_MALLOC
++dnl AC_FUNC_MALLOC
+ AC_FUNC_MEMCMP
+ AC_FUNC_SELECT_ARGTYPES
+ AC_TYPE_SIGNAL
