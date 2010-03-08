@@ -50,7 +50,7 @@ all:
 		--with-librt
 
 	@make -C $(TDIR) CC=$(CC)
-	@sudo make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
+	@make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTALL_MOD_PATH) install
 
 install:

@@ -51,23 +51,23 @@ all:
 		--with-gpg-error-prefix=$(INSTALL_MOD_PATH)/usr
 
 	@make -C $(TDIR) CC=$(CC)
-	@sudo make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
+	@make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTALL_MOD_PATH) install
 
-        # fix libtool idiotics
-	#@rm $(TOOLCHAIN)/target/usr/lib/libcrypt.la $(INSTALL_MOD_PATH)/usr/lib/libgcrypt.la
-	@sed -e 's/libdir=\'\/usr\/lib\'/libdir=\'$(TOOLCHAIN)\/target\/usr\/lib\'/' \
-		-i.orig $(TOOLCHAIN)/target/usr/lib/libcrypt.la $(INSTALL_MOD_PATH)/usr/lib/libgcrypt.la
+	@echo "fix libtool idiotics"
+	@rm ${TOOLCHAIN}/target/usr/lib/libgcrypt.la ${INSTALL_MOD_PATH}/usr/lib/libgcrypt.la
+	#@sed -e 's/libdir=.*/libdir='$${TOOLCHAIN}\/target\/usr\/lib'/' \
+	#	-i.orig ${TOOLCHAIN}/target/usr/lib/libgcrypt.la ${INSTALL_MOD_PATH}/usr/lib/libgcrypt.la
 
-        # fixup libgcrypt-config
-	@sed -e 's/exec_prefix=/exec_prefix=\${prefix}/' \
-	     -e 's/includedir=/includedir=\${prefix}/' \
-	     -e 's/libdir=/libdir=\${prefix}/' -i.orig $(TOOLCHAIN)/target/usr/bin/libgcrypt-config
+	@echo "fixup libgcrypt-config"
+	@sed -e 's/exec_prefix=/exec_prefix=$${prefix}/' \
+	     -e 's/includedir=/includedir=$${prefix}/' \
+	     -e 's/libdir=/libdir=$${prefix}/' -i.orig ${TOOLCHAIN}/target/usr/bin/libgcrypt-config
 
-	@sed -e 's/exec_prefix=/exec_prefix=\${prefix}/' \
-	     -e 's/includedir=/includedir=\${prefix}/' \
-	     -e 's/libdir=/libdir=\${prefix}/' -i.orig $(INSTALL_MOD_PATH)/usr/bin/libgcrypt-config
-`
+	@sed -e 's/exec_prefix=/exec_prefix=$${prefix}/' \
+	     -e 's/includedir=/includedir=$${prefix}/' \
+	     -e 's/libdir=/libdir=$${prefix}/' -i.orig ${INSTALL_MOD_PATH}/usr/bin/libgcrypt-config
+
 install:
 	#install to rootfs
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTALL_MOD_PATH) install

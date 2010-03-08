@@ -50,20 +50,20 @@ all:
 		--with-librt
 
 	@make -C $(TDIR) CC=$(CC)
-	@sudo make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
+	@make -C $(TDIR) CC=$(CC) DESTDIR=$(TOOLCHAIN)/target install
 	@make -C $(TDIR) CC=$(CC) DESTDIR=$(INSTALL_MOD_PATH) install
 
-	# fix libtool idiotics
-	@rm $(TOOLCHAIN)/usr/lib/libgpg-error.la $(INSTALL_MOD_PATH)/usr/lib/libgpg-error.la
+	# fixup libtool madness
+	@rm $(TOOLCHAIN)/target/usr/lib/libgpg-error.la $(INSTALL_MOD_PATH)/usr/lib/libgpg-error.la
 
-        # fixup gpg-error-config
-        @sed -e 's/exec_prefix=/exec_prefix=\${prefix}/' \
-	     -e	's/includedir=/includedir=\${prefix}/' \
-	     -e 's/libdir=/libdir=\${prefix}/' -i.orig $(TOOLCHAIN)/target/usr/bin/gpg-error-config
+	# fixup gpg-error-config
+	@sed -e 's/exec_prefix=/exec_prefix=$${prefix}/' \
+	     -e	's/includedir=/includedir=$${prefix}/' \
+	     -e 's/libdir=/libdir=$${prefix}/' -i.orig $(TOOLCHAIN)/target/usr/bin/gpg-error-config
 
-	@sed -e 's/exec_prefix=/exec_prefix=\${prefix}/' \
-	     -e	's/includedir=/includedir=\${prefix}/' \
-	     -e 's/libdir=/libdir=\${prefix}/' -i.orig $(INSTALL_MOD_PATH)/usr/bin/gpg-error-config
+	@sed -e 's/exec_prefix=/exec_prefix=$${prefix}/' \
+	     -e	's/includedir=/includedir=$${prefix}/' \
+	     -e 's/libdir=/libdir=$${prefix}/' -i.orig $(INSTALL_MOD_PATH)/usr/bin/gpg-error-config
 
 install:
 	#install to rootfs
