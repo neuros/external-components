@@ -11,7 +11,7 @@ all:
 #	@$(MAKE) -C qt-embedded $@
 	@$(MAKE) -C libgpg-error $@
 	@$(MAKE) -C libgcrypt $@
-	@$(MAKE) -C rt73-firmware $@
+#	@$(MAKE) -C rt73-firmware $@
 	@$(MAKE) -C zydas-firmware $@
 	@$(MAKE) -C wifi-tools $@
 	@$(MAKE) -C e2fsprogs $@
