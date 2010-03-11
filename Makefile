@@ -8,7 +8,7 @@ all:
 	@$(MAKE) -C alsa-utils $@
 	@$(MAKE) -C strace $@
 	@$(MAKE) -C iperf $@
-#	@$(MAKE) -C qt-embedded $@
+	@$(MAKE) -C qt-embedded $@
 	@$(MAKE) -C libgpg-error $@
 	@$(MAKE) -C libgcrypt $@
 #	@$(MAKE) -C rt73-firmware $@
