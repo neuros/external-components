@@ -11,7 +11,7 @@ ifndef PRJROOT
     $(error You must first source the BSP environment: "source neuros-env")
 endif
 
-TVER=2009.1.1
+TVER=1.5012
 TARCHIVE=ntfs-3g-$(TVER).tgz
 TURL=http://www.ntfs-3g.org/$(TARCHIVE)
 BDIR=_build
